@@ -38,13 +38,13 @@ cp .env.example .env && cp .env.example .env.test
 > Run the project
 
 ```shell
-npm start
+ts-node artisan serve
 ```
 
-> Run artisan with npm to set loaders
+> Run the project tests
 
 ```shell
-npm run artisan
+ts-node artisan test
 ```
 
 ## Links
