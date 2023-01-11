@@ -1,17 +1,7 @@
 import { ServiceProvider } from '@athenna/ioc'
 
 export default class AppServiceProvider extends ServiceProvider {
-  /**
-   * Register any application services.
-   *
-   * @return {void|Promise<void>}
-   */
-  async register() {}
+  async register(): Promise<void> {}
 
-  /**
-   * Bootstrap any application services.
-   *
-   * @return {void|Promise<void>}
-   */
-  async boot() {}
+  async boot(): Promise<void> {}
 }
