@@ -1,4 +1,4 @@
-import { HttpExceptionHandler } from '@athenna/http'
+import { ErrorContextContract, HttpExceptionHandler } from '@athenna/http'
 
 /*
 |--------------------------------------------------------------------------
@@ -32,12 +32,7 @@ export class Handler extends HttpExceptionHandler {
     return []
   }
 
-  /**
-   * The global exception handler of all HTTP requests.
-   *
-   * @param {import('@athenna/http').ErrorContextContract} ctx
-   */
-  async handle(ctx) {
+  async handle(ctx: ErrorContextContract) {
     return super.handle(ctx)
   }
 }

@@ -1,4 +1,9 @@
 {
+  "ts-node": {
+    "esm": true,
+    // Set "swc" to "false" to make type checks.
+    "swc": true,
+  },
   "compilerOptions": {
     "module": "ESNext",
     "target": "ESNext",

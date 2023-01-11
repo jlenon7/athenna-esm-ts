@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env ts-node
 
 import { install } from 'source-map-support'
 import { Env, Config } from '@athenna/config'
