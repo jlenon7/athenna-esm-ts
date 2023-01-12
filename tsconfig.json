@@ -2,15 +2,18 @@
   "ts-node": {
     "esm": true,
     // Set "swc" to "false" to make type checks.
-    "swc": true,
+    "swc": true
   },
   "compilerOptions": {
+    "strict": false,
+    "rootDir": ".",
+    "outDir": "build",
     "module": "ESNext",
     "target": "ESNext",
-    "moduleResolution": "NodeNext",
-    "strict": false
+    "skipLibCheck": true,
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "NodeNext"
   },
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

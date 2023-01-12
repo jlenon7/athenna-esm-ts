@@ -12,6 +12,7 @@
     "athenna"
   ],
   "scripts": {
+    "build": "ts-node artisan build",
     "start": "ts-node bootstrap/main.ts",
     "start:dev": "ts-node artisan serve --watch",
     "start:debug": "cross-env DEBUG=api:* && cross-env NODE_OPTIONS=\"--inspect\" ts-node artisan serve --watch",
@@ -22,17 +23,17 @@
   },
   "type": "module",
   "imports": {
-    "#app/*": "./app/*.ts",
-    "#bootstrap/*": "./bootstrap/*.ts",
-    "#config/*": "./config/*.ts",
-    "#database/*": "./database/*.ts",
-    "#lang/*": "./lang/*.ts",
-    "#providers/*": "./providers/*.ts",
-    "#facades/*": "./providers/Facades/*.ts",
-    "#resources/*": "./resources/*.ts",
-    "#routes/*": "./routes/*.ts",
-    "#storage/*": "./storage/*.ts",
-    "#tests/*": "./tests/*.ts"
+    "#app/*": "./app/*.js",
+    "#bootstrap/*": "./bootstrap/*.js",
+    "#config/*": "./config/*.js",
+    "#database/*": "./database/*.js",
+    "#lang/*": "./lang/*.js",
+    "#providers/*": "./providers/*.js",
+    "#facades/*": "./providers/Facades/*.js",
+    "#resources/*": "./resources/*.js",
+    "#routes/*": "./routes/*.js",
+    "#storage/*": "./storage/*.js",
+    "#tests/*": "./tests/*.js"
   },
   "dependencies": {
     "@athenna/artisan": "3.0.4",
@@ -52,6 +53,7 @@
     "@japa/run-failed-tests": "1.0.7",
     "@japa/runner": "2.0.7",
     "@japa/spec-reporter": "1.1.12",
+    "@types/sinon": "^10.0.13",
     "@typescript-eslint/eslint-plugin": "5.48.1",
     "@typescript-eslint/parser": "5.48.1",
     "c8": "7.11.2",
@@ -95,7 +97,7 @@
     }
   },
   "lint-staged": {
-    "*.js": [
+    "*.ts": [
       "eslint --fix",
       "git add"
     ],
@@ -125,6 +127,9 @@
       }
     ]
   },
+  "eslintIgnore": [
+    "build/**/*"
+  ],
   "eslintConfig": {
     "env": {
       "es2021": true,
