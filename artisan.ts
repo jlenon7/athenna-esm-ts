@@ -1,12 +1,9 @@
 #!/usr/bin/env ts-node
 
-import { install } from 'source-map-support'
 import { Env, Config } from '@athenna/config'
 import { Ignite, ProviderHelper } from '@athenna/core'
 
 async function main() {
-  install()
-
   process.env.IS_TS = 'true'
   process.env.IS_ARTISAN = 'true'
 

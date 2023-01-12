@@ -1,9 +1,6 @@
 import { Ignite } from '@athenna/core'
-import { install } from 'source-map-support'
 
 async function main() {
-  install()
-
   process.env.IS_TS = 'true'
   process.env.IS_ARTISAN = 'false'
 
