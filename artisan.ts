@@ -8,6 +8,7 @@ async function main() {
   install()
 
   process.env.IS_TS = 'true'
+  process.env.IS_ARTISAN = 'true'
 
   const application = await new Ignite().fire()
   const artisan = await application.bootArtisan()

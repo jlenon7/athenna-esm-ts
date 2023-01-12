@@ -27,6 +27,8 @@ import { WelcomeServiceMock } from '#tests/Stubs/WelcomeServiceMock'
 
 ioc.fake('App/Services/WelcomeService', WelcomeServiceMock)
 
+process.env.IS_ARTISAN = 'false'
+
 /*
 |--------------------------------------------------------------------------
 | Configure tests
