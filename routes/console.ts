@@ -1,6 +1,6 @@
 import { parse } from 'node:path'
 import { Artisan } from '@athenna/artisan'
-import { File, Path } from '@athenna/common'
+import { File, Folder, Path } from '@athenna/common'
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +22,7 @@ Artisan.command('build', async function () {
     return new File(path).copy(path.replace(base, `build/${base}`))
   }
 
-  await this.execCommand('rimraf build')
+  await Folder.safeRemove(Path.pwd('build'))
   await cpToBuild(Path.pwd('package.json'))
   await this.execCommand('tsc', 'Building.')
 
