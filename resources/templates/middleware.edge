@@ -1,0 +1,17 @@
+import { 
+  HandleContextContract,
+  InterceptContextContract,
+  TerminateContextContract 
+} from '@athenna/http'
+
+export class {{ namePascal }} {
+    async handle(ctx: HandleContextContract): Promise<void> {}
+
+    async intercept({ body }: InterceptContextContract): Promise<any | any[]> {
+      body.intercepted = true
+
+      return body
+    }
+
+    async terminate(ctx: TerminateContextContract): Promise<void> {}
+}

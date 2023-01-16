@@ -1,0 +1,7 @@
+import { Test, HttpTestContext } from '@athenna/test'
+
+export class {{ namePascal }} extends Test {
+    async shouldBeAbleToRunTests({ assert }: HttpTestContext) {
+        assert.equal(2 + 2, 4)
+    }
+}

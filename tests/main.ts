@@ -3,7 +3,6 @@ import { TestSuite } from '@athenna/test'
 import { specReporter } from '@japa/spec-reporter'
 import { runFailedTests } from '@japa/run-failed-tests'
 import { processCliArgs, configure, run } from '@japa/runner'
-
 import { WelcomeServiceMock } from '#tests/Stubs/WelcomeServiceMock'
 
 /*
@@ -39,7 +38,7 @@ configure({
       {
         name: 'E2E',
         files: ['tests/E2E/**/*Test.ts', 'tests/E2E/**/*TestFn.ts'],
-        configure: suite => TestSuite.httpEnd2EndSuite(suite),
+        configure: suite => TestSuite.httpEnd2EndSuite(import.meta.url, suite),
       },
       {
         name: 'Unit',

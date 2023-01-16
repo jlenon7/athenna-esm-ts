@@ -1,0 +1,23 @@
+import { ContextContract } from '@athenna/http'
+
+export class {{ namePascal }} {
+    async index({ response }: ContextContract) {
+      return response.status(200).send([{}])
+    }
+
+    async store({ response }: ContextContract) {
+      return response.status(201).send({})
+    }
+
+    async show({ response }: ContextContract) {
+      return response.status(200).send({})
+    }
+
+    async update({ response, params }: ContextContract) {
+      return response.status(200).send({ id: params.id })
+    }
+
+    async delete({ response }: ContextContract) {
+      return response.status(204)
+    }
+}

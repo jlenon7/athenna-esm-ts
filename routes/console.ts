@@ -29,5 +29,5 @@ Artisan.command('build', async function () {
   console.log()
   this.success('Build process succesfully finished.')
 })
-  .description('Athenna just says hello.')
+  .description('Transpile the Athenna project to JS ESM.')
   .createHelp()

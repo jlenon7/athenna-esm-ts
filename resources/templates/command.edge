@@ -1,0 +1,19 @@
+import { Command, Commander } from '@athenna/artisan'
+
+export class {{ namePascal }} extends Command {
+    get signature(): string {
+        return 'your:command <yourArgument>'
+    }
+
+    get description(): string {
+        return 'Your command description.'
+    }
+
+    addFlags(commander: Commander): Commander {
+      return commander
+    }
+
+    async handle(argument: string, options: any): Promise<void> {
+      //
+    }
+}
