@@ -47,6 +47,12 @@ ts-node artisan serve
 ts-node artisan test
 ```
 
+> Build the project and serve the application
+
+```shell
+ts-node artisan build && node build/artisan serve
+```
+
 ## Links
 
 > For project documentation [click here](https://athenna.io). If something is not clear in the documentation please open
