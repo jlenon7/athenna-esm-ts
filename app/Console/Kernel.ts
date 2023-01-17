@@ -4,59 +4,62 @@ import { Folder, Path } from '@athenna/common'
 import { ArtisanLoader, ConsoleKernel } from '@athenna/artisan'
 
 export class Kernel extends ConsoleKernel {
-  /**
-   * Register the commands for the application.
-   *
-   * @return {any[]}
-   */
   get commands() {
-    const internalCommands = [
-      ...ArtisanLoader.loadCommands(),
-      ...HttpLoader.loadCommands(),
-      ...CoreLoader.loadCommands(),
-    ]
-
-    const appCommands = new Folder(Path.console('Commands'))
-      .loadSync()
-      .getFilesByPattern(`**/*.${Path.ext()}`, true)
-      .map(command => import(command.href))
-
-    if (Env('NODE_ENV') === 'production') {
-      return [...internalCommands, ...appCommands]
-    }
-
-    const testCommandsPath = Path.nodeModules('@athenna/test/src/Commands')
-    const testCommands = new Folder(testCommandsPath)
-      .loadSync()
-      .getFilesByPattern('**/*.js', true)
-      .map(command => import(command.href))
-
-    internalCommands.push(...testCommands)
-
-    return [...internalCommands, ...appCommands]
+    return [...this.internalCommands, ...this.testCommands, ...this.appCommands]
   }
 
-  /**
-   * Register custom templates files.
-   *
-   * @return {any[]}
-   */
   get templates() {
-    if (Env('NODE_ENV') === 'production') {
-      return [
-        ...CoreLoader.loadTemplates(),
-        ...HttpLoader.loadTemplates(),
-        ...ArtisanLoader.loadTemplates(),
-      ]
+    return [
+      ...this.internalTemplates,
+      ...this.testTemplates,
+      ...this.appTemplates,
+    ]
+  }
+
+  get appCommands() {
+    const path = Path.console('Commands')
+
+    if (!Folder.existsSync(path)) {
+      return []
     }
 
-    const testTemplatesPath = Path.nodeModules('@athenna/test/templates')
-    const testTemplates = new Folder(testTemplatesPath)
-      .loadSync()
-      .getFilesByPattern('**/*.edge', true)
+    return new Folder(path)
+      .getFilesByPattern(`**/*.${Path.ext()}`, true)
+      .map(command => import(command.href))
+  }
 
+  get testCommands() {
+    return new Folder(Path.nodeModules('@athenna/test/src/Commands'))
+      .getFilesByPattern(`**/*.${Path.ext()}`, true)
+      .map(command => import(command.href))
+  }
+
+  get internalCommands() {
     return [
-      ...testTemplates,
+      ...HttpLoader.loadCommands(),
+      ...CoreLoader.loadCommands(),
+      ...ArtisanLoader.loadCommands(),
+    ]
+  }
+
+  get appTemplates() {
+    const path = Path.resources('templates')
+
+    if (!Folder.existsSync(path)) {
+      return []
+    }
+
+    return new Folder(path).getFilesByPattern('**/*.edge', true)
+  }
+
+  get testTemplates() {
+    return new Folder(
+      Path.nodeModules('@athenna/test/templates'),
+    ).getFilesByPattern('**/*.edge', true)
+  }
+
+  get internalTemplates() {
+    return [
       ...CoreLoader.loadTemplates(),
       ...HttpLoader.loadTemplates(),
       ...ArtisanLoader.loadTemplates(),
